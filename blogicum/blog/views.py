@@ -49,10 +49,12 @@ def index(request):
     context = {'posts': posts[::-1]}
     return render(request, template, context)
 
+
 def post_detail(request, pk):
     template = 'blog/detail.html'
     context = {'post': posts[int(pk)]}
     return render(request, template, context)
+
 
 def category_posts(request, category_slug):
     template = 'blog/category.html'
