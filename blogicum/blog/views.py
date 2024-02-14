@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import Http404
 
 posts = [
     {
@@ -43,7 +44,7 @@ posts = [
     },
 ]
 
-check_post = {post['id']: post for post in posts}
+CHECK_POST = {post['id']: post for post in posts}
 
 
 def index(request):
@@ -51,8 +52,8 @@ def index(request):
 
 
 def post_detail(request, pk):
-    if int(pk) not in check_post:
-        raise Exception('Такого постика нет, увы =)')
+    if int(pk) not in CHECK_POST:
+        raise Http404('Запрашиваемый ресурс не найден')
     return render(request, 'blog/detail.html', {'post': posts[int(pk)]})
 
 

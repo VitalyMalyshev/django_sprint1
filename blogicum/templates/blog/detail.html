@@ -3,12 +3,7 @@
   {{ post.location }}. {{ post.date }}
 {% endblock %}
 {% block content %}
-  <article>
-    {% include "blog/includes/post_card.html" %}
-      <p>
-        {{ post.text|linebreaks }}
-      </p>
-  </article>
+  {% include 'blog/includes/post_card.html' with index_page=False %}
 {% endblock %}
 
 
