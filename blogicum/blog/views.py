@@ -43,23 +43,21 @@ posts = [
     },
 ]
 
+check_post = {post['id']: post for post in posts}
+
 
 def index(request):
-    template = 'blog/index.html'
-    context = {'posts': posts[::-1]}
-    return render(request, template, context)
+    return render(request, 'blog/index.html', {'posts': posts[::-1]})
 
 
 def post_detail(request, pk):
-    template = 'blog/detail.html'
-    context = {'post': posts[int(pk)]}
-    return render(request, template, context)
+    if int(pk) not in check_post:
+        raise Exception('Такого постика нет, увы =)')
+    return render(request, 'blog/detail.html', {'post': posts[int(pk)]})
 
 
 def category_posts(request, category_slug):
-    template = 'blog/category.html'
-    context = {
+    return render(request, 'blog/category.html', {
         'category_slug': category_slug,
         'category_posts': category_posts,
-    }
-    return render(request, template, context)
+    })
