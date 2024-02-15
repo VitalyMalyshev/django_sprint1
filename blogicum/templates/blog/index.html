@@ -6,6 +6,6 @@
   <h1>Лента записей</h1>
   {% for post in posts %}
     <hr>
-    {% include 'blog/includes/post_card.html' with index_page=True %}
+    {% include 'blog/includes/post_card.html' with index=True %}
   {% endfor %}
 {% endblock %}
