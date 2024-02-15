@@ -48,13 +48,15 @@ CHECK_POST = {post['id']: post for post in posts}
 
 
 def index(request):
-    return render(request, 'blog/index.html', {'posts': posts[::-1]})
+    return render(request, 'blog/index.html',
+                  {'posts': posts[::-1], 'index_page': bool})
 
 
 def post_detail(request, pk):
-    if int(pk) not in CHECK_POST:
+    if pk not in CHECK_POST:
         raise Http404('Запрашиваемый ресурс не найден')
-    return render(request, 'blog/detail.html', {'post': posts[int(pk)]})
+    return render(request, 'blog/detail.html',
+                  {'post': posts[int(pk)], 'index_page': bool})
 
 
 def category_posts(request, category_slug):
